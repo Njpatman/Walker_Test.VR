@@ -1,0 +1,13 @@
+class CfgSounds
+{
+
+	#include "Walker_Main\Walker_Sounds\Walker_Sounds.hpp"
+
+};
+
+class CfgFunctions
+{
+
+   #include "Walker_Main\Walker_Server_Functions\Walker_Server_Functions.hpp"
+   
+};

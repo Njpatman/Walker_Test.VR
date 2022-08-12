@@ -494,20 +494,21 @@ while {alive _human} do {
 	_override = false;
 
 	for "_i" from 0 to ((count _leg_arrays) - 1) do {
-		leg_object_destroyed = false;
+		_core setVariable ["leg_object_destroyed", false];
 		_leg_array = _leg_arrays select _i; 
 		{  
 			if (typename _x  != typename 0) then {
 				_destroyed = _x getVariable "destroyed";
 				if (!isNil "_destroyed") then {
 					if (!alive _x && !_destroyed) then {
-						leg_object_destroyed = true;
+						_core setVariable ["leg_object_destroyed", true];
 						_x setVariable ["destroyed", true];
 					};
 				};
 			};
 		} forEach _leg_array;
-		if (leg_object_destroyed) then {
+		_check_leg_destroyed = _core getVariable "leg_object_destroyed";
+		if (_check_leg_destroyed) then {
 			[_core, _walker_point_object, _leg_array, _walker_segment_object] spawn {
 				params ["_core", "_walker_point_object", "_leg_array", "_walker_segment_object"]; 
 				{
@@ -570,7 +571,7 @@ while {alive _human} do {
 				_legs_destroyed = _legs_destroyed + 1;
 				_core setVariable ["legs_destroyed", _legs_destroyed];
 			};
-			leg_object_destroyed = false; 
+			_core setVariable ["leg_object_destroyed", false];
 		};
 	}; 
 

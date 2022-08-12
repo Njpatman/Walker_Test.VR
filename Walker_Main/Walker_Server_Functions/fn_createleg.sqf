@@ -13,7 +13,6 @@ params
 	"_walker_point_object",
 	"_walker_max_iterations",
 	"_AI_targets_main_array",
-	"_walker_everybody_hates",
 	"_walker_legs_invincible"
 ];
 _segments = []; 
@@ -52,7 +51,6 @@ for "_i" from 0 to (count _AI_targets_main_array) - 1 do {
 		_AI_target_obj allowDamage false;
 		_man = _grp createUnit [(_AI_targets select 4), [0,0,0], [], 0, "CARGO"];
 		waitUntil {!isNull _man};
-		if (_walker_everybody_hates) then {_man addRating -10000;};
 		_man moveInAny _AI_target_obj;
 	};
 };

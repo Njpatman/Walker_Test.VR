@@ -7,7 +7,6 @@ params
 	"_walker_segment_color", 
 	"_walker_joint_color",
 	"_walker_side",
-	"_walker_everybody_hates",
 	"_walker_hates_everybody",
 	"_walker_weapons_enabled",
 	"_walker_searchlight_enabled",
@@ -45,7 +44,7 @@ switch (_walker_walk_height_param) do {
 
 _AI_targets = [];
 _AI_targets_main_array = [];
-if (_walker_everybody_hates) then {_walker_side = [sideEnemy];};
+if (_walker_hates_everybody) then {_walker_side = [sideEnemy];};
 for "_e" from 0 to ((count _walker_side) - 1) do { 
 	_side = _walker_side select _e;
 	_side = str _side;
@@ -243,7 +242,6 @@ if (_walker_weapons_enabled) then {
 			_man allowDamage false;
 			waitUntil {!isNull _man};
 			_man additem "NVGoggles";
-			if (_walker_everybody_hates) then {_man addRating -10000;};
 			_man moveInGunner _turret;
 			if (typeOf _turret isEqualTo "B_SAM_System_01_F") then {
 				_turret setObjectTextureGlobal [0, '#(rgb,8,8,3)color(0.125,0.125,0.135,0.15)'];
@@ -366,7 +364,6 @@ for "_pair" from 1 to _walker_num_of_legs do {
 			_walker_point_object,
 			_walker_max_iterations,
 			_AI_targets_main_array,
-			_walker_everybody_hates,
 			_walker_legs_invincible
 		] call Walker_fnc_createLeg; 
 		private _handle = _legBase getVariable "Walker_handle"; 
